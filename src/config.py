@@ -1,8 +1,13 @@
-"""Arquivo de configurações."""
 
-from pathlib import Path 
+from pathlib import Path
 
-url = "https://ftp.cptec.inpe.br/modelos/tempo/MERGE/GPM/DAILY"
-diretorio = Path("MERGE")
+from pydantic_settings import BaseSettings
 
-diretorio.mkdir(parents=True, exist_ok=True)
+
+class Configuracoes(BaseSettings):
+    url_merge: str = "https://ftp.cptec.inpe.br/modelos/tempo/MERGE/GPM/DAILY"
+    diretorio: Path = Path("MERGE")
+
+
+config = Configuracoes()
+config.diretorio.mkdir(parents=True, exist_ok=True)
